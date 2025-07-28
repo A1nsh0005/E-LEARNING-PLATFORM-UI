@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Course Detail</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <h1>E-Learning Platform</h1>
+    <nav>
+      <a href="index.html" class="nav-link">Courses</a>
+      <a href="dashboard.html" class="nav-link">Dashboard</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="course-detail">
+      <h2 id="course-title">Course Title</h2>
+      <p id="course-description">Course description goes here.</p>
+
+      <div class="progress-container">
+        <label>Progress:</label>
+        <progress id="progress-bar" value="0" max="100"></progress>
+        <span id="progress-text">0%</span>
+      </div>
+
+      <div class="video-container">
+        <video id="lesson-video" width="100%" controls>
+          <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+
+      <button id="mark-complete-btn" class="btn">Mark Lesson Complete</button>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 E-Learning Platform</p>
+  </footer>
+
+  <script>
+    // Simulated course data
+    const courses = {
+      html: {
+        title: 'Introduction to HTML',
+        description: 'Learn the basics of HTML5 and structure your web pages effectively.',
+        video: 'https://www.w3schools.com/html/mov_bbb.mp4'
+      },
+      css: {
+        title: 'CSS for Beginners',
+        description: 'Master styling with CSS, layouts, and responsive design techniques.',
+        video: 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm'
+      },
+      js: {
+        title: 'JavaScript Fundamentals',
+        description: 'Understand core JavaScript concepts to create interactive web pages.',
+        video: 'https://www.w3schools.com/jsref/movie.mp4'
+      }
+    };
+
+    // Get query parameter ?course=
+    const params = new URLSearchParams(window.location.search);
+    const courseKey = params.get('course') || 'html'; // default to 'html'
+
+    // Update course details dynamically
+    const course = courses[courseKey];
+    document.getElementById('course-title').textContent = course.title;
+    document.getElementById('course-description').textContent = course.description;
+    document.getElementById('lesson-video').src = course.video;
+
+    // Progress logic
+    const progressBar = document.getElementById('progress-bar');
+    const progressText = document.getElementById('progress-text');
+    const markBtn = document.getElementById('mark-complete-btn');
+
+    // Load progress from localStorage
+    let progress = parseInt(localStorage.getItem(`progress_${courseKey}`)) || 0;
+    progressBar.value = progress;
+    progressText.textContent = progress + '%';
+
+    markBtn.addEventListener('click', () => {
+      if (progress < 100) {
+        progress += 20; // Increase progress by 20%
+        if (progress > 100) progress = 100;
+        progressBar.value = progress;
+        progressText.textContent = progress + '%';
+        localStorage.setItem(`progress_${courseKey}`, progress);
+      }
+    });
+  </script>
+</body>
+</html>
