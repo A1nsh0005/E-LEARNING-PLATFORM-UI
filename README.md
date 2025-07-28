@@ -65,3 +65,11 @@ Summary
 This E-Learning Platform UI design project successfully delivers a functional, interactive, and visually appealing multi-page interface using only HTML, CSS, and vanilla JavaScript. It lays the groundwork for future expansion with backend integration, user authentication, and more advanced features such as quizzes, real-time progress sync, and course recommendations. By balancing design aesthetics with usability and accessibility, the project meets the fundamental needs of modern online learners and educators alike.
 
 
+
+
+
+"OUTPUT"
+
+
+
+<img width="1920" height="1008" alt="Image" src="https://github.com/user-attachments/assets/8fdf747e-5dbd-4f4e-a021-cd644b9866c6" />
